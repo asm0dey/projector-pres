@@ -109,3 +109,26 @@ RDP is awesome
 
 ---
 
+# Swing architecture
+
+![bg](images/swing_tree.png)
+
+---
+
+# Definitions
+
+**Toolkit** — abstraction over the whole graphics
+**Heavyweight components** — system-controlled components
+**Lightweight components** — user-controlled components
+**Graphics2D** — drawing controller
+
+---
+
+# Types of drawing surface
+
+- Visible
+- Invisible
+    Part of editor which you don't see is separate and is drawn on invisible surface
+
+---
+
