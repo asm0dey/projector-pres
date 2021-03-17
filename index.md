@@ -51,7 +51,7 @@ Pasha Finkelshteyn, JetBrains
 <!--
 _class: lead
 -->
-...huge projector logo...
+![bg fit](images/icon_128.svg)
 
 ---
 
@@ -97,6 +97,15 @@ RDP is awesome
 
 ## Usual Swing interface
 ![bg height:75%](images/swing_interface.png)
+
+---
+
+# And in reality?
+
+- Lines
+- Simple shapes
+- Strings
+- Fonts
 
 ---
 
