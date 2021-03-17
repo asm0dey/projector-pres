@@ -7,7 +7,7 @@ paginate: true
 footer: ![](images/twitter_24.png) asm0di0
 backgroundImage: "linear-gradient(to bottom, #000 0%, #1a2028 50%, #293845 100%)"
 color: white
-title: Noname
+title: "Projector: Your Remote IDE"
 ---
 <!--
 _class: lead
@@ -15,9 +15,6 @@ _paginate: false
 -->
 
 <style>
-footer {
-    display: table
-}
 .hljs-variable { color: lightblue }
 .hljs-string { color: lightgreen }
 .hljs-params { color: lightpink }
@@ -47,6 +44,8 @@ Pasha Finkelshteyn, JetBrains
 - Help your colleague to fix some issues?
 - Show demo which accesses data from your cloud?
 - Work from a weak laptop?
+
+![bg right:40%](https://source.unsplash.com/UP7JSnodG2M)
 
 ---
 <!--
@@ -79,6 +78,25 @@ _class: lead
 RDP is awesome
 
 1. Single-user
+1. Requires special client
 2. Still needs complex infrastructure to provide access
 
 ---
+
+![bg brightness:50%](https://source.unsplash.com/jyoSxjUE22g)
+
+# Stop this
+
+---
+
+# Let's dig!
+
+![bg brightness:70%](https://source.unsplash.com/bV5AnCQgeUY)
+
+---
+
+## Usual Swing interface
+![bg height:75%](images/swing_interface.png)
+
+---
+
