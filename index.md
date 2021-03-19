@@ -4,7 +4,7 @@ theme: gaia
 size: 4K
 class: default
 paginate: true
-footer: ![](images/twitter_24.png) asm0di0
+footer: ![](images/twitter_24.png) [asm0di0](https://twitter.com/asm0di0)
 backgroundImage: "linear-gradient(to bottom, #000 0%, #1a2028 50%, #293845 100%)"
 color: white
 title: "Projector: Your Remote IDE"
@@ -95,7 +95,7 @@ RDP is awesome
 
 ---
 
-## Usual Swing interface
+## Typical Swing interface
 ![bg height:75%](images/swing_interface.png)
 
 ---
@@ -124,11 +124,131 @@ RDP is awesome
 
 ---
 
-# Types of drawing surface
+# Types of drawing surfaces
 
 - Visible
 - Invisible
-    Part of editor which you don't see is separate and is drawn on invisible surface
+    Part of the editor which you don't see is separate and is drawn on an invisible surface
+
+Each window has its own surface(s)
 
 ---
+
+# Heavyweight components
+
+There is a corresponding `Peer` class for each heavyweight component.
+
+```java
+interface ComponentPeer {
+    void paint(Graphics g);
+    void setBounds(int x, int y, int width, int height, int op);
+    void handleEvent(AWTEvent e);
+    void setBackground(Color c);
+    void setFont(Font f);
+    // etc.
+```
+
+Responds for delegation to Graphics and setting several params
+
+---
+<!-- _class: lead -->
+# Heavyweight components
+
+We have implementations of peers only for several heavyweight components.
+
+---
+
+# Graphics2D
+
+*Anything* may contain Graphics2D
+
+Responds for drawing:
+
+```java
+abstract class Graphics2D {
+    public abstract void drawImage(BufferedImage img, 
+                                   BufferedImageOp op,
+                                   int x, int y);
+    public abstract void drawString(String str, int x, int y);
+    public abstract void fill(Shape s);
+    // etc.
+```
+
+---
+
+![bg right:40%](https://source.unsplash.com/49uySSA678U)
+
+# How the hell will it work in a browser?
+
+Welcome [DrawEventQueue](https://github.com/JetBrains/projector-server/blob/master/projector-awt/src/main/kotlin/org/jetbrains/projector/awt/service/DrawEventQueue.kt)
+
+Queue, that will transform any action into event, based on
+
+```java
+ConcurrentLinkedQueue<List<ServerWindowEvent>>()
+```
+
+---
+
+# `DrawEventQueue`
+
+Each component hash its own queue (for now)
+
+```java
+private inline fun paintArea(
+    crossinline command: DrawEventQueue.CommandBuilder.() -> Unit
+) {
+    drawEventQueue
+        .buildCommand()
+        .setClip(identitySpaceClip = identitySpaceClip)
+        .setTransform(transform.toList())
+        .setComposite(backingComposite)
+        .command()
+}
+```
+
+---
+
+# So we have commands. Now what?
+
+```java
+while(!stopped){
+    sendAllCommands()
+    Thread.sleep(10)
+}
+```
+
+Every 10ms (roughly) aggregate all commands and send them to the client over websocket.
+
+---
+
+# Format
+
+Default format: highly optimized JSON
+Supported OOTB formats: Protobuf, JSON
+May support anything if browser supports it.
+
+---
+
+# Backend
+
+* Ktor?
+* Tomcat?
+* Undertow?
+* Netty?
+* Jetty?
+
+---
+
+![bg](https://source.unsplash.com/vBxbZokRL10)
+
+---
+
+# GPL is not always a good thing
+
+Popular products are not compatible with it and we HAVE TO publish source code under GPL license.
+
+So…
+
+## [TooTallNate/Java-WebSocket](https://github.com/TooTallNate/Java-WebSocket)
 
