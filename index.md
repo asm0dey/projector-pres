@@ -218,7 +218,7 @@ while(!stopped){
 }
 ```
 
-Every 10ms (roughly) aggregate all commands and send them to the client over websocket.
+Every 10ms (roughly) aggregate all commands and send them to the client over WebSocket.
 
 ---
 
@@ -226,7 +226,7 @@ Every 10ms (roughly) aggregate all commands and send them to the client over web
 
 Default format: highly optimized JSON
 Supported OOTB formats: Protobuf, JSON
-May support anything if browser supports it.
+May support anything if the browser supports it.
 
 ---
 
@@ -246,9 +246,70 @@ May support anything if browser supports it.
 
 # GPL is not always a good thing
 
-Popular products are not compatible with it and we HAVE TO publish source code under GPL license.
+Popular products are not compatible with it, and we HAVE TO publish source code under GPL license.
 
 So…
 
 ## [TooTallNate/Java-WebSocket](https://github.com/TooTallNate/Java-WebSocket)
 
+And a bunch of crutches to add HTTP support there.
+
+---
+
+# Clients
+
+A client should implement ≈30 API methods of drawing
+
+The good part of Kotlin: we can share some logic between client and server (and we do).
+
+`kotlilnx.serialisazation` _may_ do things easier (but deserialization is sooo slow).
+
+---
+
+# In browser
+
+![bg](images/in_browser.png)
+
+---
+
+# In client
+
+![bg](images/in_client.png)
+
+---
+
+# Desktop client
+
+- Electron-based
+- (Almost) all browser hotkeys are disables
+- May me expanded to full screen
+
+---
+<!-- _footer: "" -->
+# Installation: GNU/Linux
+
+```bash
+pipx install projector-installer
+```
+
+![height:400](images/projector_run.png)
+
+---
+
+# Installation: Docker
+
+[JetBrains/projector-docker](JetBrains/projector-docker)
+
+```
+docker pull \
+    registry.jetbrains.team/p/prj/containers/projector-idea-u
+docker run --rm -p 8887:8887 -it \
+    registry.jetbrains.team/p/prj/containers/projector-idea-u
+
+```
+
+Preserve state?
+
+`run-container-mounted.sh [containerName]` ← helper script
+
+---
