@@ -227,26 +227,26 @@ private inline fun paintArea(
 There are at least 5 times of images in AWT :scream:
 
 `VolatileImage`:
-* is used to display off-screen surfaces
-* is drawn by primitives 
-* is being sent as commands.
+- is used to display off-screen surfaces
+- is drawn by primitives 
+- is being sent as commands.
 
 ---
 
 # Images
 
 `BufferedImage`:
-* is being sent as bitmap
-* we have sophisticated reflection-based heuristics to determine if it is changed
-* may be optimized in future
+- is being sent as bitmap
+- we have sophisticated reflection-based heuristics to determine if it is changed
+- may be optimized in future
 
 ---
 
 # Images
 
 `MultiresolutionImage`:
-* used for drawing icons
-* supported only if it has  the single resolution
+- used for drawing icons
+- supported only if it has  the single resolution
 
 ---
 
@@ -378,41 +378,41 @@ docker run --rm -p 8887:8887 -it \
 
 # Useful scripts
 
-* Build a container with IDE of your choice
+- Build a container with IDE of your choice
 `build-container.sh [containerName [ideDownloadUrl]]`
-* Run Stateless container
+- Run Stateless container
 `run-container.sh [containerName]`
-* Run container with mounted directory to preserve state
+- Run container with mounted directory to preserve state
 `run-container-mounted.sh [containerName]`
 
 ---
 
 # How does it compare to CWM?
 
-* It's not a tool for collaborative development (for now)
-* Allows to display any IDE component
-* Very comfortable to help/comment on somebody's issues
+- It's not a tool for collaborative development (for now)
+- Allows to display any IDE component
+- Very comfortable to help/comment on somebody's issues
 
 ---
 
 # Place for improvement
 
-* Visual glitches
-* Support for (more) AWT components
-* Improve HiDPI support
-* Speculative typing (?)
-* iOS (Android?) native clients (Flutter?)
-* Queue optimization
-* **You** name it
+- Visual glitches
+- Support for (more) AWT components
+- Improve HiDPI support
+- Speculative typing (?)
+- iOS (Android?) native clients (Flutter?)
+- Queue optimization
+- **You** name it
 
 ---
 
 # What did we learn?
 
-* UI operations can be buffered
-* There are not so many REAL UI operations
-* Crossplatform drawing is achievable
-* Parts of code may really be reused between server and client
+- UI operations can be buffered
+- There are not so many REAL UI operations
+- Crossplatform drawing is achievable
+- Parts of code may really be reused between server and client
 
 ---
 
