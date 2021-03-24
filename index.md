@@ -128,9 +128,9 @@ RDP is awesome
 
 - Visible
 - Invisible
-    Part of the editor which you don't see is separate and is drawn on an invisible surface
+    Part of the editor, which you don't see, is separate and is drawn on an invisible surface.
 
-Each window has its own surface(s)
+Each window has its surface(s)
 
 ---
 
@@ -183,9 +183,9 @@ abstract class Graphics2D {
 ---
 # How the hell will it work in a browser?
 
-Initial version just sent the whole screen to the client.
+The initial version just sent the whole screen to the client.
 
-It had whopping performance of ≈5 fps :hushed:
+It had a whopping performance of ≈5 fps :hushed:
 
 ![bg right:40%](images/9000.png)
 
@@ -195,7 +195,7 @@ It had whopping performance of ≈5 fps :hushed:
 
 Welcome [DrawEventQueue](https://github.com/JetBrains/projector-server/blob/master/projector-awt/src/main/kotlin/org/jetbrains/projector/awt/service/DrawEventQueue.kt)
 
-Queue, that will transform any action into event, based on
+Queue that will transform any action into an event, based on
 
 ```java
 ConcurrentLinkedQueue<List<ServerWindowEvent>>()
@@ -205,7 +205,7 @@ ConcurrentLinkedQueue<List<ServerWindowEvent>>()
 
 # `DrawEventQueue`
 
-Each component hash its own queue (for now)
+Each component has its queue (for now)
 
 ```java
 private inline fun paintArea(
@@ -224,7 +224,7 @@ private inline fun paintArea(
 
 # Images
 
-There are at least 5 times of images in AWT :scream:
+There are at least five types of images in AWT :scream:
 
 `VolatileImage`:
 - is used to display off-screen surfaces
@@ -265,7 +265,7 @@ while(!stopped){
 }
 ```
 
-Every 10ms (roughly) aggregate all commands and send them to the client over WebSocket.
+Every 10ms (roughly), aggregate all commands and send them to the client over WebSocket.
 
 ---
 
@@ -273,13 +273,13 @@ Every 10ms (roughly) aggregate all commands and send them to the client over Web
 
 Default format: highly optimized JSON
 Supported OOTB formats: Protobuf, JSON
-May support anything if the browser supports it.
+May support anything if we'll implement it on both sides.
 
 ---
 
 # Format
 
-```json
+```JSON
 [["e",{"a":["a",{"a":2}],"b":[["h",{"a":["a",{"a":252.0,"b":78.0,
 "c":26.0,"d":24.0}]}],["p",{"a":[1.0,0.0,0.0,1.0,21.0,76.0]}],["i",
 {"a":["a",{"a":1.0,"b":"a","c":"c","d":10.0,"e":0.0,"f":null}]}],
@@ -290,7 +290,7 @@ May support anything if the browser supports it.
 ```
 
 Everything is determined in runtime — types, fields, etc.
-For example `"e"` at the very beginning is type!
+For example, `"e"` at the very beginning is type!
 
 ---
 
@@ -322,13 +322,13 @@ And a bunch of crutches to add HTTP support there.
 
 # Clients
 
-A client should implement ≈30 API methods of drawing
+A client should implement ≈30 API methods of drawing + request resources
 
-The good part of Kotlin: we can share some logic between client and server (and we do).
+The excellent part of Kotlin: we can share some logic between client and server (and we do).
 
-`kotlilnx.serialisazation` _may_ do things easier (but deserialization is sooo slow).
+`kotlinx.serialization` _may_ do things more straightforward (but deserialization is sooo slow).
 
-Non-read-only client should be able to send mouse and keyboard events, request for resources and so on.
+A non-read-only client should be able to send mouse and keyboard events, and so on.
 
 ---
 
@@ -338,7 +338,7 @@ Non-read-only client should be able to send mouse and keyboard events, request f
 
 ---
 
-# In projector-client
+# In projector-launcher
 
 ![bg](images/in_client.png)
 
@@ -347,7 +347,7 @@ Non-read-only client should be able to send mouse and keyboard events, request f
 # Desktop client
 
 - Electron-based
-- (Almost) all browser hotkeys are disables
+- (Almost) all browser hotkeys are disabled
 - May me expanded to full screen
 
 ---
@@ -359,6 +359,12 @@ pipx install projector-installer
 ```
 
 ![height:400](images/projector_run.png)
+
+---
+
+# Configuration
+
+![bg fit](images/config.png)
 
 ---
 
@@ -387,10 +393,44 @@ docker run --rm -p 8887:8887 -it \
 
 ---
 
+<style local>
+p > img {
+    display:block;
+    margin:auto;
+}
+</style>
+
+# Installation: IDE
+
+![height:520](images/plugin.png)
+
+---
+<!-- _footer: '' -->
+# How does it work?
+
+```kotlin
+it.insertBefore("""
+    $DRAW_HANDLER_CLASS_LOADING
+    clazz
+        .getMethod(
+            "handleGraphics2D", 
+            new Class[] { String.class, Object[].class, 
+                java.awt.Graphics.class})
+        .invoke(
+            null, 
+            new Object[] { "${it.longName}", 
+                $JAVASSIST_ARGS, $JAVASSIST_THIS});
+    """.trimIndent())
+```
+
+Adds one more call to every drawing method
+
+---
+
 # How does it compare to CWM?
 
 - It's not a tool for collaborative development (for now)
-- Allows to display any IDE component
+- Allows displaying any IDE component
 - Very comfortable to help/comment on somebody's issues
 
 ---
@@ -411,8 +451,8 @@ docker run --rm -p 8887:8887 -it \
 
 - UI operations can be buffered
 - There are not so many REAL UI operations
-- Crossplatform drawing is achievable
-- Parts of code may really be reused between server and client
+- Cross-platform drawing is achievable
+- Parts of code may be reused between server and client
 
 ---
 
