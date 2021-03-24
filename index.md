@@ -12,6 +12,7 @@ title: "Projector: Your Remote IDE"
 <!--
 _class: lead
 _paginate: false
+_footer: ""
 -->
 
 <style>
