@@ -96,8 +96,15 @@ RDP is awesome
 
 ---
 
+<style scoped>
+p > img {
+    display:block;
+    margin:auto;
+}
+</style>
+
 ## Typical Swing interface
-![bg height:75%](images/swing_interface.png)
+![height:540](images/swing_interface.png)
 
 ---
 
@@ -203,23 +210,17 @@ ConcurrentLinkedQueue<List<ServerWindowEvent>>()
 ```
 
 ---
+<style scoped>
+p > img {
+    display:block;
+    margin:auto;
+}
+</style>
 
 # `DrawEventQueue`
 
 Each component has its queue (for now)
-
-```java
-private inline fun paintArea(
-    crossinline command: DrawEventQueue.CommandBuilder.() -> Unit
-) {
-    drawEventQueue
-        .buildCommand()
-        .setClip(identitySpaceClip = identitySpaceClip)
-        .setTransform(transform.toList())
-        .setComposite(backingComposite)
-        .command()
-}
-```
+![width:1150](images/command.png)
 
 ---
 
@@ -277,18 +278,16 @@ Supported OOTB formats: Protobuf, JSON
 May support anything if we'll implement it on both sides.
 
 ---
+<style scoped>
+p > img {
+    display:block;
+    margin:auto;
+}
+</style>
 
 # Format
 
-```JSON
-[["e",{"a":["a",{"a":2}],"b":[["h",{"a":["a",{"a":252.0,"b":78.0,
-"c":26.0,"d":24.0}]}],["p",{"a":[1.0,0.0,0.0,1.0,21.0,76.0]}],["i",
-{"a":["a",{"a":1.0,"b":"a","c":"c","d":10.0,"e":0.0,"f":null}]}],
-["s",{"a":["a",{"a":-12828863}]}],["r",{"a":["a",{"a":"a","b":1.0}]}]
-,["d",{"a":"b","b":0.0,"c":0.0,"d":478.0,"e":28.0}],["p",{"a":[1.0,0.
-0,0.0,1.0,252.0,78.0]}],["l",{"a":["a",{"a":1024,"b":-172147019}],
-"b":["b",{"a":5,"b":4,"c":16,"d":16,"e":null}]}]]}]]
-```
+![width:1150](images/json.png)
 
 Everything is determined in runtime — types, fields, etc.
 For example, `"e"` at the very beginning is type!
@@ -403,26 +402,13 @@ p > img {
 
 # Installation: IDE
 
-![height:520](images/plugin.png)
+![height:520 drop-shadow](images/plugin.png)
 
 ---
 <!-- _footer: '' -->
 # How does it work?
 
-```kotlin
-it.insertBefore("""
-    $DRAW_HANDLER_CLASS_LOADING
-    clazz
-        .getMethod(
-            "handleGraphics2D", 
-            new Class[] { String.class, Object[].class, 
-                java.awt.Graphics.class})
-        .invoke(
-            null, 
-            new Object[] { "${it.longName}", 
-                $JAVASSIST_ARGS, $JAVASSIST_THIS});
-    """.trimIndent())
-```
+![width:1100](images/insert_java.png)
 
 Adds one more call to every drawing method
 
