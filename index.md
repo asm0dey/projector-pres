@@ -394,7 +394,7 @@ docker run --rm -p 8887:8887 -it \
 
 ---
 
-<style local>
+<style scoped>
 p > img {
     display:block;
     margin:auto;
@@ -467,4 +467,6 @@ _footer: ""
 # Thank you
 
 ![](images/twitter_24.png) asm0di0
-![](images/telegram.png) asm0di0
+![](images/telegram.png) asm0dey
+
+🎙️ [newpodcast2.live](https://newpodcast2.live)
